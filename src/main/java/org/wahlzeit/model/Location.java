@@ -7,4 +7,8 @@ public class Location {
      */
     public Coordinate coordinate;
 
+    public Coordinate() {
+
+    }
+
 }
