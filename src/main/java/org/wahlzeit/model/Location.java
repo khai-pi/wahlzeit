@@ -7,8 +7,8 @@ public class Location {
      */
     public Coordinate coordinate;
 
-    public Coordinate() {
-
+    public Location(Coordinate coordinate) {
+        this.coordinate = coordinate;
     }
 
 }
