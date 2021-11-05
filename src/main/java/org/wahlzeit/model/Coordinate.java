@@ -1,5 +1,7 @@
 package org.wahlzeit.model;
 
+import java.lang.Math;
+
 public class Coordinate {
 
     /**
@@ -65,5 +67,23 @@ public class Coordinate {
      */
     public double getZ() {
         return z;
+    }
+
+    /**
+     *
+     * @methodtype get
+     */
+    public double getDistance(Coordinate coordinate) {
+        double distanceSquare =
+                  Math.pow(this.getX()-coordinate.getX(),2)
+                + Math.pow(this.getY()-coordinate.getY(),2)
+                + Math.pow(this.getZ()-coordinate.getZ(),2);
+        return Math.sqrt(distanceSquare);
+    }
+
+    public boolean isEqual(Coordinate coordinate) {
+        return (this.getX() == coordinate.getX())
+                && (this.getY() == coordinate.getY())
+                && (this.getZ() == coordinate.getZ());
     }
 }
