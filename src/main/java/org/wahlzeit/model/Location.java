@@ -5,10 +5,25 @@ public class Location {
     /**
      *
      */
-    public Coordinate coordinate;
+    private Coordinate coordinate;
 
     public Location(Coordinate coordinate) {
         this.coordinate = coordinate;
     }
 
+    /**
+     *
+     * @methodtype set
+     */
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
+    }
+
+    /**
+     *
+     * @methodtype get
+     */
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
 }

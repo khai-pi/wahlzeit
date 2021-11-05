@@ -92,7 +92,7 @@ public class Photo extends DataObject {
 	/**
 	 *
 	 */
-	public Location location;
+	private Location location;
 
 	/**
 	 * 
@@ -468,4 +468,19 @@ public class Photo extends DataObject {
 		return creationTime;
 	}
 
+	/**
+	 *
+	 * @methodtype set
+	 */
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	/**
+	 *
+	 * @methodtype get
+	 */
+	public Location getLocation() {
+		return this.location;
+	}
 }
