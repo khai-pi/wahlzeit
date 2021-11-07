@@ -312,7 +312,7 @@ public class Photo extends DataObject {
 	 * @methodtype boolean-query
 	 */
 	public boolean hasSameOwner(Photo photo) {
-		return photo.getOwnerEmailAddress().equals(ownerEmailAddress);
+		return photo.getOwnerEmailAddress().isEqual(ownerEmailAddress);
 	}
 
 	/**

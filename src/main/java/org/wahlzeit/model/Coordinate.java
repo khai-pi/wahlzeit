@@ -81,6 +81,12 @@ public class Coordinate {
         return Math.sqrt(distanceSquare);
     }
 
+    /**
+     *
+     * @methodtype boolean-query
+     * return true if coordinate has the same x,y,z values,
+     * even if they are 2 different object
+     */
     public boolean isEqual(Coordinate coordinate) {
         return (this.getX() == coordinate.getX())
                 && (this.getY() == coordinate.getY())
