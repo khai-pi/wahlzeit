@@ -1,8 +1,14 @@
 package org.wahlzeit.model;
 
-import java.lang.Math;
+import org.wahlzeit.services.DataObject;
 
-public class Coordinate {
+import java.lang.Math;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Objects;
+
+public class Coordinate extends DataObject {
 
     /**
      *
@@ -91,5 +97,42 @@ public class Coordinate {
         return (this.getX() == coordinate.getX())
                 && (this.getY() == coordinate.getY())
                 && (this.getZ() == coordinate.getZ());
+    }
+
+    @Override
+    public String getIdAsString() {
+        return null;
+    }
+
+    @Override
+    public void readFrom(ResultSet rset) throws SQLException {
+        x = rset.getDouble("coordinate_x");
+        y = rset.getDouble("coordinate_y");
+        z = rset.getDouble("coordinate_z");
+    }
+
+    @Override
+    public void writeOn(ResultSet rset) throws SQLException {
+        rset.updateDouble("coordinate_x", this.x);
+        rset.updateDouble("coordinate_y", this.y);
+        rset.updateDouble("coordinate_z", this.z);
+    }
+
+    @Override
+    public void writeId(PreparedStatement stmt, int pos) throws SQLException {
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o==this) return true;
+        if (!(o instanceof  Coordinate)) return false;
+        Coordinate other = (Coordinate) o;
+        return isEqual(other);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y, z);
     }
 }
