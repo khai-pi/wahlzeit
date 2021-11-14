@@ -17,6 +17,9 @@ import org.wahlzeit.services.*;
 
 public class NaturePhoto extends Photo {
 
+    private String country;
+    private int daytime;
+
     /**
      *
      * @methodtype constructor
@@ -39,5 +42,21 @@ public class NaturePhoto extends Photo {
      */
     public NaturePhoto(ResultSet rset) throws SQLException {
         super(rset);
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public int getDaytime() {
+        return daytime;
+    }
+
+    public void setDaytime(int daytime) {
+        this.daytime = daytime;
     }
 }

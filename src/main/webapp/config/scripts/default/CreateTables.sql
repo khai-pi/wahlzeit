@@ -32,7 +32,9 @@ CREATE TABLE photos (
 	creation_time bigint,
 	coordinate_x double,
 	coordinate_y double,
-	coordinate_z double
+	coordinate_z double,
+	country text,
+	daytime integer
 );
 
 CREATE TABLE tags (

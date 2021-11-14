@@ -12,9 +12,6 @@ import java.util.*;
 
 public class NaturePhotoManager extends PhotoManager{
 
-    private String country;
-    private int daytime;
-
     /**
      *
      */
@@ -238,20 +235,5 @@ public class NaturePhotoManager extends PhotoManager{
         return result;
     }
 
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    public int getDaytime() {
-        return daytime;
-    }
-
-    public void setDaytime(int daytime) {
-        this.daytime = daytime;
-    }
 }
 
