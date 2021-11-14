@@ -2,9 +2,14 @@ package org.wahlzeit.model;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.verify;
 
 public class LocationTest {
 
@@ -32,5 +37,19 @@ public class LocationTest {
         Coordinate newCoordinate = new Coordinate(4,5,6);
         location.setCoordinate(newCoordinate);
         assertEquals(newCoordinate, location.getCoordinate());
+    }
+
+    @Test
+    public void testSerialization() throws SQLException {
+        // arrange
+        Coordinate coordinate = Mockito.mock(Coordinate.class);
+        ResultSet rset = Mockito.mock(ResultSet.class);
+        Location location = new Location(coordinate);
+
+        // act
+        location.writeOn(rset);
+
+        // assert
+        verify(coordinate, Mockito.times(1)).writeOn(rset);
     }
 }
