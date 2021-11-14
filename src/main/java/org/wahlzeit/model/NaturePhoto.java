@@ -18,7 +18,7 @@ import org.wahlzeit.services.*;
 public class NaturePhoto extends Photo {
 
     private String country;
-    private int daytime;
+    private int daytime = -1;
 
     /**
      *
@@ -41,7 +41,27 @@ public class NaturePhoto extends Photo {
      * @methodtype constructor
      */
     public NaturePhoto(ResultSet rset) throws SQLException {
-        super(rset);
+        readFrom(rset);
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void readFrom(ResultSet rset) throws SQLException {
+        country = rset.getString("country");
+        daytime = rset.getInt("daytime");
+        super.readFrom(rset);
+    }
+
+    /**
+     *
+     */
+    @Override
+    public void writeOn(ResultSet rset) throws SQLException {
+        rset.updateString("country", country);
+        rset.updateInt("daytime", daytime);
+        super.readFrom(rset);
     }
 
     public String getCountry() {
