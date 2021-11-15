@@ -34,8 +34,8 @@ public class ShowUserHomePageHandler extends AbstractWebPageHandler {
 		if (photos.length != 0) {
 			WritableList list = new WritableList();
 			for (Photo photo : photos) {
-				// load it from the PhotoManager to make sure the same copy is used
-				photo = PhotoManager.getInstance().getPhotoFromId(photo.getId());
+				// load it from the NaturePhotoManager to make sure the same copy is used
+				photo = NaturePhotoManager.getInstance().getPhotoFromId(photo.getId());
 				if (photo != null && !photo.getStatus().isDeleted()) {
 					part = makeUserPhotoForm(us, photo);
 					list.append(part);

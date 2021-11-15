@@ -38,7 +38,7 @@ public class EditUserPhotoFormHandler extends AbstractWebFormHandler {
 		part.addStringFromArgs(args, UserSession.MESSAGE);
 
 		String id = us.getAsString(args, Photo.ID);
-		Photo photo = PhotoManager.getPhoto(id);
+		Photo photo = NaturePhotoManager.getPhoto(id);
 
 		part.addString(Photo.ID, id);
 		part.addString(Photo.THUMB, getPhotoThumb(us, photo));
@@ -56,7 +56,7 @@ public class EditUserPhotoFormHandler extends AbstractWebFormHandler {
 	 */
 	protected boolean isWellFormedPost(UserSession us, Map args) {
 		String id = us.getAsString(args, Photo.ID);
-		Photo photo = PhotoManager.getPhoto(id);
+		Photo photo = NaturePhotoManager.getPhoto(id);
 		return (photo != null) && us.isPhotoOwner(photo);
 	}
 	
@@ -65,8 +65,8 @@ public class EditUserPhotoFormHandler extends AbstractWebFormHandler {
 	 */
 	protected String doHandlePost(UserSession us, Map args) {
 		String id = us.getAndSaveAsString(args, Photo.ID);
-		PhotoManager pm = PhotoManager.getInstance();
-		Photo photo = PhotoManager.getPhoto(id);
+		PhotoManager pm = NaturePhotoManager.getInstance();
+		Photo photo = NaturePhotoManager.getPhoto(id);
 
 		String tags = us.getAndSaveAsString(args, Photo.TAGS);
 		photo.setTags(new Tags(tags));

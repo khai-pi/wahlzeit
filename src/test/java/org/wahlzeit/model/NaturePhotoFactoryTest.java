@@ -13,13 +13,6 @@ import static org.mockito.Mockito.verify;
 public class NaturePhotoFactoryTest {
 
     @Test
-    public void testSetInstance() {
-        NaturePhotoFactory naturePhotoFactory = new NaturePhotoFactory();
-        NaturePhotoFactory.setInstance(naturePhotoFactory);
-        assertEquals(naturePhotoFactory, NaturePhotoFactory.getInstance());
-    }
-
-    @Test
     public void testGetInstance() {
         NaturePhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
         assertNotNull(naturePhotoFactory);

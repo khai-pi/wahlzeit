@@ -59,7 +59,7 @@ public class NotifyAboutPraiseAgent extends Agent {
 	protected void notifyOwners() {
 		Photo[] photos = null;
 		synchronized(praisedPhotos) {
-			photos = praisedPhotos.toArray(new Photo[0]);
+			photos = praisedPhotos.toArray(new NaturePhoto[0]);
 			praisedPhotos.clear();
 		}
 

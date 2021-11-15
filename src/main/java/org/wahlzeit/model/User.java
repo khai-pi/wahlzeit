@@ -201,8 +201,8 @@ public class User extends Client implements Persistent {
 		gender = Gender.getFromInt(rset.getInt("gender"));
 		status = UserStatus.getFromInt(rset.getInt("status"));
 		confirmationCode = rset.getLong("confirmation_code");
-		photos = PhotoManager.getInstance().findPhotosByOwner(name);
-		userPhoto = PhotoManager.getPhoto(PhotoId.getIdFromInt(rset.getInt("photo")));
+		photos = NaturePhotoManager.getInstance().findPhotosByOwner(name);
+		userPhoto = NaturePhotoManager.getPhoto(PhotoId.getIdFromInt(rset.getInt("photo")));
 		creationTime = rset.getLong("creation_time");
 	}
 	
@@ -486,7 +486,7 @@ public class User extends Client implements Persistent {
 	 * 
 	 */
 	public Photo[] getPhotosReverseOrderedByPraise() {
-		Photo[] result = photos.toArray(new Photo[0]);
+		Photo[] result = photos.toArray(new NaturePhoto[0]);
 		Arrays.sort(result, getPhotoByPraiseReverseComparator());
 		return result;
 	}
