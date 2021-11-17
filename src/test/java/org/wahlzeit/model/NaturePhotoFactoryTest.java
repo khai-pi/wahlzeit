@@ -12,29 +12,29 @@ import static org.mockito.Mockito.verify;
 
 public class NaturePhotoFactoryTest {
 
-    @Test
-    public void testSetInstance() {
-        NaturePhotoFactory naturePhotoFactory = new NaturePhotoFactory();
-        NaturePhotoFactory.setInstance(naturePhotoFactory);
-        assertEquals(naturePhotoFactory, NaturePhotoFactory.getInstance());
-    }
-
+//    @Test
+//    public void testSetInstance() {
+//        NaturePhotoFactory naturePhotoFactory = new NaturePhotoFactory();
+//        NaturePhotoFactory.setInstance(naturePhotoFactory);
+//        assertEquals(naturePhotoFactory, NaturePhotoFactory.getInstance());
+//    }
+    NaturePhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
     @Test
     public void testGetInstance() {
-        NaturePhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
+        //PhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
         assertNotNull(naturePhotoFactory);
     }
 
     @Test
     public void testCreateNaturePhoto() {
-        NaturePhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
+        //NaturePhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
         NaturePhoto np = naturePhotoFactory.createPhoto();
         assertNotNull(np);
     }
 
     @Test
     public void testCreateNaturePhotoWithId() {
-        NaturePhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
+        //NaturePhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
         NaturePhoto np = naturePhotoFactory.createPhoto(new PhotoId(123));
         assertNotNull(np);
         assertEquals(123,np.id.value);

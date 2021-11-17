@@ -10,29 +10,19 @@ public class NaturePhotoFactory extends PhotoFactory {
     /**
      * Hidden singleton instance; needs to be initialized from the outside.
      */
-    private static NaturePhotoFactory instance = null;
+    private static boolean isInitialized = false;
 
     /**
      * Public singleton access method.
      */
     public static synchronized NaturePhotoFactory getInstance() {
-        if (instance == null) {
+        if (!isInitialized) {
             SysLog.logSysInfo("setting generic NaturePhotoFactory");
-            setInstance(new NaturePhotoFactory());
+            PhotoFactory.setInstance(new NaturePhotoFactory());
+            isInitialized = true;
         }
 
-        return instance;
-    }
-
-    /**
-     * Method to set the singleton instance of PhotoFactory.
-     */
-    protected static synchronized void setInstance(NaturePhotoFactory naturePhotoFactory) {
-        if (instance != null) {
-            throw new IllegalStateException("attempt to initialize PhotoFactory twice");
-        }
-
-        instance = naturePhotoFactory;
+        return (NaturePhotoFactory) PhotoFactory.getInstance();
     }
 
     /**

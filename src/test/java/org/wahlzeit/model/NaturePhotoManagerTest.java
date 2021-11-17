@@ -12,7 +12,7 @@ public class NaturePhotoManagerTest {
         // arrange
         NaturePhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
         NaturePhoto naturePhoto = naturePhotoFactory.createPhoto();
-        NaturePhotoManager naturePhotoManager = NaturePhotoManager.instance;
+        NaturePhotoManager naturePhotoManager = NaturePhotoManager.getInstance();
 
         // act
         naturePhotoManager.doAddPhoto(naturePhoto);
@@ -27,7 +27,7 @@ public class NaturePhotoManagerTest {
         NaturePhotoFactory naturePhotoFactory = NaturePhotoFactory.getInstance();
         PhotoId photoId = new PhotoId(123);
         NaturePhoto naturePhoto = naturePhotoFactory.createPhoto(photoId);
-        NaturePhotoManager naturePhotoManager = NaturePhotoManager.instance;
+        NaturePhotoManager naturePhotoManager = NaturePhotoManager.getInstance();
 
         // act
         naturePhotoManager.doAddPhoto(naturePhoto);
