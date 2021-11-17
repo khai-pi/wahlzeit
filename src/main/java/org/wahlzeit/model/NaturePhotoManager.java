@@ -27,6 +27,10 @@ public class NaturePhotoManager extends PhotoManager{
         return (NaturePhotoManager) PhotoManager.getInstance();
     }
 
+    public static void initialize() {
+        getInstance();
+    }
+
     /**
      *
      */

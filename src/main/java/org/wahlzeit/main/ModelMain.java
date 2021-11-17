@@ -32,7 +32,7 @@ public abstract class ModelMain extends AbstractMain {
  		loadGlobals();
 
 		NaturePhotoFactory.initialize();
-		//NaturePhotoManager.getInstance();
+		NaturePhotoManager.initialize();
 	}
 	
 	/**
