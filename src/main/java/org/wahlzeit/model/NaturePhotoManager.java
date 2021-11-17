@@ -12,15 +12,24 @@ import java.util.*;
 
 public class NaturePhotoManager extends PhotoManager{
 
-    /**
-     *
-     */
-    protected static final NaturePhotoManager instance = new NaturePhotoManager();
+    private static boolean isInitialized = false;
 
     /**
      * In-memory cache for photos
      */
     protected Map<PhotoId, NaturePhoto> photoCache = new HashMap<PhotoId, NaturePhoto>();
+
+    public static NaturePhotoManager getInstance() {
+        if (!isInitialized) {
+            PhotoManager.setInstance(new NaturePhotoManager());
+            isInitialized = true;
+        }
+        return (NaturePhotoManager) PhotoManager.getInstance();
+    }
+
+    public static void initialize() {
+        getInstance();
+    }
 
     /**
      *
