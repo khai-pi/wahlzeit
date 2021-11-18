@@ -33,6 +33,9 @@ CREATE TABLE photos (
 	coordinate_x double,
 	coordinate_y double,
 	coordinate_z double,
+	coordinate_phi double,
+	coordinate_theta double,
+	coordinate_radius double,
 	country text,
 	daytime integer
 );

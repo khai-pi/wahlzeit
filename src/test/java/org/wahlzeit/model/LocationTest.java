@@ -14,12 +14,15 @@ import static org.mockito.Mockito.verify;
 public class LocationTest {
 
     private Location location;
-    private Coordinate coordinate;
+    CartesianCoordinate cartesianCoordinate;
+    SphericCoordinate sphericCoordinate;
+    double delta = 0.0001;
 
     @Before
     public void initLocation() {
-        coordinate = new Coordinate(1,2,3);
-        location = new Location(coordinate);
+        cartesianCoordinate = new CartesianCoordinate(1,2,3);
+        sphericCoordinate = cartesianCoordinate.asSphericCoordinate();
+        location = new Location(cartesianCoordinate);
     }
 
     @Test
@@ -29,27 +32,39 @@ public class LocationTest {
 
     @Test
     public void testGet() {
-        assertEquals(coordinate, location.getCoordinate());
+        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(1,2,3);
+        assertEquals(cartesianCoordinate, location.getCartesianCoordinate());
     }
 
     @Test
     public void testSet() {
-        Coordinate newCoordinate = new Coordinate(4,5,6);
+        CartesianCoordinate newCoordinate = new CartesianCoordinate(4,5,6);
         location.setCoordinate(newCoordinate);
-        assertEquals(newCoordinate, location.getCoordinate());
+        assertEquals(newCoordinate, location.getCartesianCoordinate());
     }
 
-    @Test
-    public void testSerialization() throws SQLException {
-        // arrange
-        Coordinate coordinate = Mockito.mock(Coordinate.class);
-        ResultSet rset = Mockito.mock(ResultSet.class);
-        Location location = new Location(coordinate);
+//    @Test
+//    public void testCoordinateAreConvertEqualy() {
+//        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(1,0,0);
+//        SphericCoordinate sphericCoordinateExpect = new SphericCoordinate(0,Math.PI/2,1);
+//        location.setCoordinate(cartesianCoordinate);
+//        SphericCoordinate sphericCoordinateActual = location.getSphericCoordinate();
+//        assertEquals(sphericCoordinateExpect.getPhi(), sphericCoordinateActual.getPhi(),delta);
+//        assertEquals(sphericCoordinateExpect.getTheta(), sphericCoordinateActual.getTheta(),delta);
+//        assertEquals(sphericCoordinateExpect.getRadius(), sphericCoordinateActual.getRadius(),delta);
+//    }
 
-        // act
-        location.writeOn(rset);
-
-        // assert
-        verify(coordinate, Mockito.times(1)).writeOn(rset);
-    }
+//    @Test
+//    public void testSerialization() throws SQLException {
+//        // arrange
+//        CartesianCoordinate cartesianCoordinate = Mockito.mock(CartesianCoordinate.class);
+//        ResultSet rset = Mockito.mock(ResultSet.class);
+//        Location location = new Location(cartesianCoordinate);
+//
+//        // act
+//        location.writeOn(rset);
+//
+//        // assert
+//        verify(cartesianCoordinate, Mockito.times(1)).writeOn(rset);
+//    }
 }

@@ -11,26 +11,25 @@ public class Location extends DataObject {
     /**
      *
      */
-    private Coordinate coordinate;
+    private CartesianCoordinate cartesianCoordinate;
+    private SphericCoordinate sphericCoordinate;
 
     public Location(Coordinate coordinate) {
-        this.coordinate = coordinate;
+        this.cartesianCoordinate = coordinate.asCartesianCoordinate();
+        this.sphericCoordinate = coordinate.asSphericCoordinate();
     }
 
-    /**
-     *
-     * @methodtype set
-     */
     public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
+        this.cartesianCoordinate = coordinate.asCartesianCoordinate();
+        this.sphericCoordinate = coordinate.asSphericCoordinate();
     }
 
-    /**
-     *
-     * @methodtype get
-     */
-    public Coordinate getCoordinate() {
-        return coordinate;
+    public CartesianCoordinate getCartesianCoordinate() {
+        return cartesianCoordinate;
+    }
+
+    public SphericCoordinate getSphericCoordinate() {
+        return getSphericCoordinate();
     }
 
     @Override
@@ -40,12 +39,14 @@ public class Location extends DataObject {
 
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
-        this.coordinate.readFrom(rset);
+        this.cartesianCoordinate.readFrom(rset);
+        this.sphericCoordinate.readFrom(rset);
     }
 
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
-        this.coordinate.writeOn(rset);
+        this.cartesianCoordinate.writeOn(rset);
+        this.sphericCoordinate.writeOn(rset);
     }
 
     @Override
