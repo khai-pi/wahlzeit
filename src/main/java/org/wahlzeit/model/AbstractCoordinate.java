@@ -65,13 +65,9 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
 
     }
 
+    // convert coordinate co cartesian coordinate to compare
     @Override
     public boolean isEqual(Coordinate coordinate) {
-        /**
-        if (coordinate instanceof CartesianCoordinate) return doIsEqualCartesian(coordinate.asCartesianCoordinate());
-        else if (coordinate instanceof SphericCoordinate) return doIsEqualSpheric(coordinate.asSphericCoordinate());
-        else return false;
-         */
         return doIsEqualCartesian(coordinate.asCartesianCoordinate());
     };
 
@@ -94,8 +90,4 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
                 && (Math.abs(this.asCartesianCoordinate().getZ() - cartesianCoordinate.getZ()) <= delta);
     }
 
-//    public boolean doIsEqualSpheric(SphericCoordinate sphericCoordinate) {
-//        CartesianCoordinate cartesianCoordinate = sphericCoordinate.asCartesianCoordinate();
-//        return doIsEqualCartesian(cartesianCoordinate);
-//    }
 }

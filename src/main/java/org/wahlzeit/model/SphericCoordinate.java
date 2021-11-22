@@ -61,36 +61,6 @@ public class SphericCoordinate extends AbstractCoordinate {
         return Objects.hash(phi,theta,radius);
     }
 
-    /**
-     *
-     * @methodtype boolean-query
-     * return true if coordinate has the same x,y,z values,
-     * even if they are 2 different object
-     */
-//    public boolean isEqual(Coordinate coordinate) {
-////        if (coordinate instanceof CartesianCoordinate) return doIsEqualCartesian(coordinate.asCartesianCoordinate());
-////        else if (coordinate instanceof SphericCoordinate) return doIsEqualSpheric(coordinate.asSphericCoordinate());
-////        else return false;
-//        return doIsEqualSpheric(coordinate.asSphericCoordinate());
-//    }
-
-//    public boolean doIsEqualCartesian(CartesianCoordinate cartesianCoordinate) {
-//        CartesianCoordinate thisCartesianCoordinate = this.asCartesianCoordinate();
-//        double delta = 0.0001;
-//        return (Math.abs(thisCartesianCoordinate.getX() - cartesianCoordinate.getX()) <= delta)
-//                && (Math.abs(thisCartesianCoordinate.getY() - cartesianCoordinate.getY()) <= delta)
-//                && (Math.abs(thisCartesianCoordinate.getZ() - cartesianCoordinate.getZ()) <= delta);
-//    }
-//
-//    public boolean doIsEqualSpheric(SphericCoordinate sphericCoordinate) {
-////        CartesianCoordinate cartesianCoordinate = sphericCoordinate.asCartesianCoordinate();
-////        return doIsEqualCartesian(cartesianCoordinate);
-//        double delta = 0.0001;
-//        return (Math.abs(this.getPhi() - sphericCoordinate.getPhi()) <= delta)
-//                && (Math.abs(this.getTheta() - sphericCoordinate.getTheta()) <= delta)
-//                && (Math.abs(this.getRadius() - sphericCoordinate.getRadius()) <= delta);
-//    }
-
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
         phi = rset.getDouble("coordinate_phi");

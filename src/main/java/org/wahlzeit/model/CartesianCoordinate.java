@@ -65,34 +65,10 @@ public class CartesianCoordinate extends AbstractCoordinate {
         return new SphericCoordinate(phi, theta, radius);
     }
 
-//    @Override
-//    public double getCentralAngle(Coordinate coordinate) {
-//        return this.asSphericCoordinate()
-//                .getCentralAngle(coordinate.asSphericCoordinate());
-//    }
-
     @Override
     public int hashCode() {
         return Objects.hash(x, y, z);
     }
-
-    /**
-     *
-     * @methodtype boolean-query
-     * return true if coordinate has the same x,y,z values,
-     * even if they are 2 different object
-     */
-//    public boolean isEqual(Coordinate coordinate) {
-////        if (coordinate instanceof CartesianCoordinate) return doIsEqualCartesian(coordinate.asCartesianCoordinate());
-////        else if (coordinate instanceof SphericCoordinate) return doIsEqualSpheric(coordinate.asSphericCoordinate());
-////        else return false;
-//        return doIsEqualCartesian(coordinate.asCartesianCoordinate());
-//    }
-
-//    public boolean doIsEqualSpheric(SphericCoordinate sphericCoordinate) {
-//        CartesianCoordinate cartesianCoordinate = sphericCoordinate.asCartesianCoordinate();
-//        return doIsEqualCartesian(cartesianCoordinate);
-//    }
 
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
