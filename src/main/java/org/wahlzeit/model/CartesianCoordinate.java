@@ -71,7 +71,7 @@ public class CartesianCoordinate extends DataObject implements Coordinate {
     }
 
     @Override
-    public SphericCoordinate asSphericCoordinate() {
+    public SphericCoordinate asSphericCoordinate() throws ArithmeticException{
         double radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
         double phi = Math.atan(y / x);
         double theta = Math.acos(z / radius);
