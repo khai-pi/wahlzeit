@@ -53,11 +53,13 @@ public class SphericCoordinateTest {
     public void testIsEqualCartesian() {
         CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(1,0,0);
         assertTrue(sphericCoordinate.isEqual(cartesianCoordinate));
+        assertTrue(sphericCoordinate.equals(cartesianCoordinate));
     }
 
     @Test
     public void testIsEqualSpheric() {
         assertTrue(sphericCoordinate.isEqual(new SphericCoordinate(0, Math.PI/2,1)));
+        assertTrue(sphericCoordinate.equals(new SphericCoordinate(0, Math.PI/2,1)));
     }
 
     @Test

@@ -54,6 +54,7 @@ public class CartesianCoordinateTest {
     @Test
     public void testIsEqualCartesian() {
         assertTrue(cartesianCoordinate.isEqual(new CartesianCoordinate(1,2,3)));
+        assertTrue(cartesianCoordinate.equals(new CartesianCoordinate(1,2,3)));
         assertFalse(cartesianCoordinate.isEqual(new CartesianCoordinate(4,5,6)));
     }
 
@@ -62,6 +63,7 @@ public class CartesianCoordinateTest {
         cartesianCoordinate = new CartesianCoordinate(1,0,0);
         SphericCoordinate sphericCoordinate = new SphericCoordinate(0,Math.PI/2,1);
         assertTrue(cartesianCoordinate.isEqual(sphericCoordinate));
+        assertTrue(cartesianCoordinate.equals(sphericCoordinate));
     }
 
     @Test
