@@ -56,10 +56,27 @@ public class SphericCoordinate extends AbstractCoordinate {
         return this;
     }
 
+    /**
+     *
+     * @param coordinate
+     * @return double
+     * this method turn the coordinate, which called it, to SphericCoordinate
+     * and turn the Coordinate parameter to SphericCoordinate
+     * then it calculates the central angle between 2 coordinates
+     */
     @Override
-    public int hashCode() {
-        return Objects.hash(phi,theta,radius);
+    public double getCentralAngle(Coordinate coordinate) {
+        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
+        return Math.acos(Math.sin(this.getPhi()) * Math.sin(sphericCoordinate.getPhi())
+                + Math.cos(this.getPhi())
+                * Math.cos(sphericCoordinate.asSphericCoordinate().getPhi())
+                * Math.cos(Math.abs(this.getRadius() - sphericCoordinate.asSphericCoordinate().getRadius())));
     }
+
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(phi,theta,radius);
+//    }
 
     @Override
     public void readFrom(ResultSet rset) throws SQLException {

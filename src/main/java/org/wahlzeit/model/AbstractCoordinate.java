@@ -36,12 +36,7 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
      */
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
-        CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
-        double distanceSquare =
-                Math.pow(this.asCartesianCoordinate().getX()-cartesianCoordinate.getX(),2)
-                        + Math.pow(this.asCartesianCoordinate().getY()-cartesianCoordinate.getY(),2)
-                        + Math.pow(this.asCartesianCoordinate().getZ()-cartesianCoordinate.getZ(),2);
-        return Math.sqrt(distanceSquare);
+        return coordinate.asCartesianCoordinate().getCartesianDistance(this);
     }
 
     @Override
@@ -57,12 +52,7 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
      */
     @Override
     public double getCentralAngle(Coordinate coordinate) {
-        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
-        return Math.acos(Math.sin(this.asSphericCoordinate().getPhi()) * Math.sin(sphericCoordinate.getPhi())
-                + Math.cos(this.asSphericCoordinate().getPhi())
-                * Math.cos(sphericCoordinate.asSphericCoordinate().getPhi())
-                * Math.cos(Math.abs(this.asSphericCoordinate().getRadius() - sphericCoordinate.asSphericCoordinate().getRadius())));
-
+        return coordinate.asSphericCoordinate().getCentralAngle(this);
     }
 
     // convert coordinate co cartesian coordinate to compare
@@ -80,7 +70,9 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
     }
 
     @Override
-    public abstract int hashCode();
+    public int hashCode() {
+        return this.asCartesianCoordinate().hashCode();
+    }
 
     // compare coordinates base on its Cartesian Coordinate
     public boolean doIsEqualCartesian(CartesianCoordinate cartesianCoordinate) {

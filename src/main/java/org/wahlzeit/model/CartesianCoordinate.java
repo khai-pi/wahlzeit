@@ -65,6 +65,24 @@ public class CartesianCoordinate extends AbstractCoordinate {
         return new SphericCoordinate(phi, theta, radius);
     }
 
+    /**
+     *
+     * @param coordinate
+     * @return double
+     * this method turn the coordinate, which called it, to CartesianCoordinate
+     * and turn the Coordinate parameter to CartesianCoordinate
+     * then it calculates the distance between 2 coordinates
+     */
+    @Override
+    public double getCartesianDistance(Coordinate coordinate) {
+        CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
+        double distanceSquare =
+                Math.pow(this.getX()-cartesianCoordinate.getX(),2)
+                        + Math.pow(this.getY()-cartesianCoordinate.getY(),2)
+                        + Math.pow(this.getZ()-cartesianCoordinate.getZ(),2);
+        return Math.sqrt(distanceSquare);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(x, y, z);
