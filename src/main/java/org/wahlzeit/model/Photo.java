@@ -481,6 +481,7 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setLocation(Location location) {
+		assert location != null;
 		this.location = location;
 	}
 

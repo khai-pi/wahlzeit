@@ -25,17 +25,22 @@ public class CartesianCoordinate extends AbstractCoordinate {
         this.x = x;
         this.y = y;
         this.z = z;
+
+        assertClassInvariants();
     }
 
     public void setX(double x) {
+        assert x >= 0;
         this.x = x;
     }
 
     public void setY(double y) {
+        assert y >= 0;
         this.y = y;
     }
 
     public void setZ(double z) {
+        assert z >= 0;
         this.z = z;
     }
 
@@ -58,9 +63,16 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
     @Override
     public SphericCoordinate asSphericCoordinate() throws ArithmeticException{
+        assertClassInvariants();
+
         double radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+        if (radius == 0) {
+            return new SphericCoordinate(0,0,0);
+        }
         double phi = Math.atan(y / x);
         double theta = Math.acos(z / radius);
+
+        assertClassInvariants();
 
         return new SphericCoordinate(phi, theta, radius);
     }
@@ -75,11 +87,19 @@ public class CartesianCoordinate extends AbstractCoordinate {
      */
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
+
+        assertClassInvariants();
+        assertCoordinateIsNotNull(coordinate);
+
         CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
         double distanceSquare =
                 Math.pow(this.getX()-cartesianCoordinate.getX(),2)
                         + Math.pow(this.getY()-cartesianCoordinate.getY(),2)
                         + Math.pow(this.getZ()-cartesianCoordinate.getZ(),2);
+
+        assert distanceSquare >= 0;
+        assertClassInvariants();
+
         return Math.sqrt(distanceSquare);
     }
 
@@ -90,6 +110,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
+        assert rset != null;
         x = rset.getDouble("coordinate_x");
         y = rset.getDouble("coordinate_y");
         z = rset.getDouble("coordinate_z");
@@ -97,8 +118,25 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
+        assert rset != null;
         rset.updateDouble("coordinate_x", this.x);
         rset.updateDouble("coordinate_y", this.y);
         rset.updateDouble("coordinate_z", this.z);
+    }
+
+    /**
+     *  Ensure a correct Cartesian Coordinate, all coordinate must not null
+     */
+    @Override
+    public void assertClassInvariants() {
+        assert !Double.isNaN(x);
+        assert x != Double.POSITIVE_INFINITY;
+        assert x >= 0;
+        assert !Double.isNaN(y);
+        assert y != Double.POSITIVE_INFINITY;
+        assert y >= 0;
+        assert !Double.isNaN(z);
+        assert z != Double.POSITIVE_INFINITY;
+        assert z >= 0;
     }
 }

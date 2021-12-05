@@ -135,6 +135,7 @@ public class PhotoManager extends ObjectManager {
 	 * Load all persisted photos. Executed when Wahlzeit is restarted.
 	 */
 	public void addPhoto(Photo photo) {
+		assert photo != null;
 		PhotoId id = photo.getId();
 		assertIsNewPhoto(id);
 		doAddPhoto(photo);
@@ -243,6 +244,7 @@ public class PhotoManager extends ObjectManager {
 	 * 
 	 */
 	protected Photo getPhotoFromFilter(PhotoFilter filter) {
+		assert filter != null;
 		PhotoId id = filter.getRandomDisplayablePhotoId();
 		Photo result = getPhotoFromId(id);
 		while((result != null) && !result.isVisible()) {

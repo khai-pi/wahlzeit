@@ -50,6 +50,7 @@ public class NaturePhotoFactory extends PhotoFactory {
      *
      */
     public NaturePhoto createPhoto(PhotoId id) {
+        assert id != null;
         return new NaturePhoto(id);
     }
 
@@ -57,6 +58,7 @@ public class NaturePhotoFactory extends PhotoFactory {
      *
      */
     public NaturePhoto createPhoto(ResultSet rs) throws SQLException {
+        assert rs != null;
         return new NaturePhoto(rs);
     }
 }

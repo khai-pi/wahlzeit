@@ -67,6 +67,7 @@ public class PhotoFactory {
 	 * 
 	 */
 	public Photo createPhoto(PhotoId id) {
+		assert id != null;
 		return new Photo(id);
 	}
 	
@@ -74,6 +75,7 @@ public class PhotoFactory {
 	 * 
 	 */
 	public Photo createPhoto(ResultSet rs) throws SQLException {
+		assert rs != null;
 		return new Photo(rs);
 	}
 	

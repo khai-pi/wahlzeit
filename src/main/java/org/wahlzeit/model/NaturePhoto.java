@@ -41,6 +41,7 @@ public class NaturePhoto extends Photo {
      * @methodtype constructor
      */
     public NaturePhoto(ResultSet rset) throws SQLException {
+        assert rset != null;
         readFrom(rset);
     }
 
@@ -49,6 +50,7 @@ public class NaturePhoto extends Photo {
      */
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
+        assert rset != null;
         country = rset.getString("country");
         daytime = rset.getInt("daytime");
         super.readFrom(rset);
@@ -59,6 +61,7 @@ public class NaturePhoto extends Photo {
      */
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
+        assert rset != null;
         rset.updateString("country", country);
         rset.updateInt("daytime", daytime);
         super.readFrom(rset);

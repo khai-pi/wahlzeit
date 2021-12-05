@@ -130,4 +130,14 @@ public class CartesianCoordinateTest {
         double actual = cartesianCoordinate.getCentralAngle(coordinate);
         assertEquals(expect, actual, delta);
     }
+
+    @Test(expected = AssertionError.class)
+    public void testAssertionClassStructure() {
+        CartesianCoordinate coordinate = new CartesianCoordinate(-1,-1,-1);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testDistanceWithNullObject() {
+        cartesianCoordinate.getCartesianDistance(null);
+    }
 }

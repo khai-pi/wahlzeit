@@ -15,11 +15,13 @@ public class Location extends DataObject {
     private SphericCoordinate sphericCoordinate;
 
     public Location(Coordinate coordinate) {
+        assert coordinate != null;
         this.cartesianCoordinate = coordinate.asCartesianCoordinate();
         this.sphericCoordinate = coordinate.asSphericCoordinate();
     }
 
     public void setCoordinate(Coordinate coordinate) {
+        assert coordinate != null;
         this.cartesianCoordinate = coordinate.asCartesianCoordinate();
         this.sphericCoordinate = coordinate.asSphericCoordinate();
     }
@@ -39,12 +41,14 @@ public class Location extends DataObject {
 
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
+        assert rset != null;
         this.cartesianCoordinate.readFrom(rset);
         this.sphericCoordinate.readFrom(rset);
     }
 
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
+        assert rset != null;
         this.cartesianCoordinate.writeOn(rset);
         this.sphericCoordinate.writeOn(rset);
     }

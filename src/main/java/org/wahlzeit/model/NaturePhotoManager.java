@@ -238,6 +238,7 @@ public class NaturePhotoManager extends PhotoManager{
      *
      */
     public NaturePhoto createPhoto(File file) throws Exception {
+        assert file != null;
         PhotoId id = PhotoId.getNextId();
         NaturePhoto result = (NaturePhoto) PhotoUtil.createPhoto(file, id);
         addPhoto(result);

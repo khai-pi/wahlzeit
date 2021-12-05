@@ -36,6 +36,7 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
      */
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
+        assertCoordinateIsNotNull(coordinate);
         return coordinate.asCartesianCoordinate().getCartesianDistance(this);
     }
 
@@ -52,17 +53,20 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
      */
     @Override
     public double getCentralAngle(Coordinate coordinate) {
+        assertCoordinateIsNotNull(coordinate);
         return coordinate.asSphericCoordinate().getCentralAngle(this);
     }
 
     // convert coordinate co cartesian coordinate to compare
     @Override
     public boolean isEqual(Coordinate coordinate) {
+        assertCoordinateIsNotNull(coordinate);
         return doIsEqualCartesian(coordinate.asCartesianCoordinate());
     };
 
     @Override
     public boolean equals(Object o) {
+        assert o != null;
         if (o==this) return true;
         if (!(o instanceof AbstractCoordinate)) return false;
         AbstractCoordinate other = (AbstractCoordinate) o;
@@ -80,6 +84,12 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
         return (Math.abs(this.asCartesianCoordinate().getX() - cartesianCoordinate.getX()) <= delta)
                 && (Math.abs(this.asCartesianCoordinate().getY() - cartesianCoordinate.getY()) <= delta)
                 && (Math.abs(this.asCartesianCoordinate().getZ() - cartesianCoordinate.getZ()) <= delta);
+    }
+
+    public abstract void assertClassInvariants();
+
+    public void assertCoordinateIsNotNull(Coordinate coordinate) {
+        assert coordinate != null;
     }
 
 }

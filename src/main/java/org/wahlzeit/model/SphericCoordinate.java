@@ -17,6 +17,8 @@ public class SphericCoordinate extends AbstractCoordinate {
         this.phi = phi;
         this.theta = theta;
         this.radius = radius;
+
+        assertClassInvariants();
     }
 
     public double getPhi() {
@@ -40,14 +42,21 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     public void setRadius(double radius) {
+        assert radius >= 0;
         this.radius = radius;
     }
 
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
+
+        assertClassInvariants();
+
         double x = radius * Math.sin(theta) * Math.cos(phi);
         double y = radius * Math.sin(theta) * Math.sin(phi);
         double z = radius * Math.cos(theta);
+
+        assertClassInvariants();
+
         return new CartesianCoordinate(x,y,z);
     }
 
@@ -66,11 +75,21 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     @Override
     public double getCentralAngle(Coordinate coordinate) {
+
+        assertClassInvariants();
+        assertCoordinateIsNotNull(coordinate);
+
         SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
-        return Math.acos(Math.sin(this.getPhi()) * Math.sin(sphericCoordinate.getPhi())
+
+        double centralAngle = Math.acos(Math.sin(this.getPhi()) * Math.sin(sphericCoordinate.getPhi())
                 + Math.cos(this.getPhi())
                 * Math.cos(sphericCoordinate.asSphericCoordinate().getPhi())
                 * Math.cos(Math.abs(this.getRadius() - sphericCoordinate.asSphericCoordinate().getRadius())));
+
+        assert centralAngle >= 0;
+        assertClassInvariants();
+
+        return centralAngle;
     }
 
 //    @Override
@@ -80,6 +99,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
+        assert rset != null;
         phi = rset.getDouble("coordinate_phi");
         theta = rset.getDouble("coordinate_theta");
         radius = rset.getDouble("coordinate_radius");
@@ -87,8 +107,26 @@ public class SphericCoordinate extends AbstractCoordinate {
 
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
+        assert rset != null;
         rset.updateDouble("coordinate_phi", this.phi);
         rset.updateDouble("coordinate_theta", this.theta);
         rset.updateDouble("coordinate_radius", this.radius);
+    }
+
+    /**
+     *  Ensure a correct Spherical Coordinate, all coordinate must not null
+     *  and radius greater than 0.
+     */
+    @Override
+    public void assertClassInvariants() {
+        assert !Double.isNaN(phi);
+        assert phi != Double.POSITIVE_INFINITY;
+        assert phi != Double.NEGATIVE_INFINITY;
+        assert !Double.isNaN(theta);
+        assert theta != Double.POSITIVE_INFINITY;
+        assert theta != Double.NEGATIVE_INFINITY;
+        assert !Double.isNaN(radius);
+        assert radius >= 0;
+        assert radius != Double.POSITIVE_INFINITY;
     }
 }

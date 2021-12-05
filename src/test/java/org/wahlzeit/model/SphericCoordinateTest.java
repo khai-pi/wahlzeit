@@ -117,4 +117,14 @@ public class SphericCoordinateTest {
         double actual = sphericCoordinate.getCentralAngle(coordinate);
         assertEquals(expect, actual, delta);
     }
+
+    @Test(expected = AssertionError.class)
+    public void testAssertionClassStructure() {
+        SphericCoordinate coordinate = new SphericCoordinate(0,0,-1);
+    }
+
+    @Test(expected = AssertionError.class)
+    public void testDistanceWithNullObject() {
+        sphericCoordinate.getCentralAngle(null);
+    }
 }
