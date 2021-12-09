@@ -131,12 +131,12 @@ public class CartesianCoordinateTest {
         assertEquals(expect, actual, delta);
     }
 
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalStateException.class)
     public void testAssertionClassStructure() {
         CartesianCoordinate coordinate = new CartesianCoordinate(-1,-1,-1);
     }
 
-    @Test(expected = AssertionError.class)
+    @Test(expected = NullPointerException.class)
     public void testDistanceWithNullObject() {
         cartesianCoordinate.getCartesianDistance(null);
     }

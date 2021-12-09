@@ -118,12 +118,12 @@ public class SphericCoordinateTest {
         assertEquals(expect, actual, delta);
     }
 
-    @Test(expected = AssertionError.class)
+    @Test(expected = IllegalStateException.class)
     public void testAssertionClassStructure() {
         SphericCoordinate coordinate = new SphericCoordinate(0,0,-1);
     }
 
-    @Test(expected = AssertionError.class)
+    @Test(expected =NullPointerException.class)
     public void testDistanceWithNullObject() {
         sphericCoordinate.getCentralAngle(null);
     }

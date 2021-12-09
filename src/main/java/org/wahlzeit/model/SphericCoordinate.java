@@ -118,15 +118,25 @@ public class SphericCoordinate extends AbstractCoordinate {
      *  and radius greater than 0.
      */
     @Override
-    public void assertClassInvariants() {
-        assert !Double.isNaN(phi);
-        assert phi != Double.POSITIVE_INFINITY;
-        assert phi != Double.NEGATIVE_INFINITY;
-        assert !Double.isNaN(theta);
-        assert theta != Double.POSITIVE_INFINITY;
-        assert theta != Double.NEGATIVE_INFINITY;
-        assert !Double.isNaN(radius);
-        assert radius >= 0;
-        assert radius != Double.POSITIVE_INFINITY;
+    public void assertClassInvariants() throws IllegalStateException{
+//        assert !Double.isNaN(phi);
+//        assert phi != Double.POSITIVE_INFINITY;
+//        assert phi != Double.NEGATIVE_INFINITY;
+//        assert !Double.isNaN(theta);
+//        assert theta != Double.POSITIVE_INFINITY;
+//        assert theta != Double.NEGATIVE_INFINITY;
+//        assert !Double.isNaN(radius);
+//        assert radius >= 0;
+//        assert radius != Double.POSITIVE_INFINITY;
+        if (Double.isNaN(phi) || Double.isNaN(theta) || Double.isNaN(radius)) {
+            throw new IllegalStateException("Coordinate must not isNan");
+        }
+        if (phi == Double.POSITIVE_INFINITY || theta == Double.POSITIVE_INFINITY || radius == Double.POSITIVE_INFINITY
+            || phi == Double.NEGATIVE_INFINITY || theta == Double.NEGATIVE_INFINITY) {
+            throw new IllegalStateException("phi, theta, radius must not Infinity");
+        }
+        if (radius < 0) {
+            throw new IllegalStateException("radius must greater than 0");
+        }
     }
 }

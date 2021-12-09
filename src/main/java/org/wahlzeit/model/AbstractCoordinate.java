@@ -88,8 +88,8 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
 
     public abstract void assertClassInvariants();
 
-    public void assertCoordinateIsNotNull(Coordinate coordinate) {
-        assert coordinate != null;
+    public void assertCoordinateIsNotNull(Coordinate coordinate) throws NullPointerException{
+        if (coordinate==null) throw new NullPointerException();
     }
 
 }

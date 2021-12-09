@@ -125,18 +125,28 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     /**
-     *  Ensure a correct Cartesian Coordinate, all coordinate must not null
+     *  Ensure a correct Cartesian Coordinate, all coordinate must not null,
+     *  greater than 0 and not infinity
      */
     @Override
-    public void assertClassInvariants() {
-        assert !Double.isNaN(x);
-        assert x != Double.POSITIVE_INFINITY;
-        assert x >= 0;
-        assert !Double.isNaN(y);
-        assert y != Double.POSITIVE_INFINITY;
-        assert y >= 0;
-        assert !Double.isNaN(z);
-        assert z != Double.POSITIVE_INFINITY;
-        assert z >= 0;
+    public void assertClassInvariants() throws IllegalStateException{
+//        assert !Double.isNaN(x);
+//        assert x != Double.POSITIVE_INFINITY;
+//        assert x >= 0;
+//        assert !Double.isNaN(y);
+//        assert y != Double.POSITIVE_INFINITY;
+//        assert y >= 0;
+//        assert !Double.isNaN(z);
+//        assert z != Double.POSITIVE_INFINITY;
+//        assert z >= 0;
+        if (Double.isNaN(x) || Double.isNaN(y) || Double.isNaN(z)) {
+            throw new IllegalStateException("Coordinate must not isNan");
+        }
+        if (x < 0 || y < 0 || z < 0) {
+            throw new IllegalStateException("x,y,z must greater than 0");
+        }
+        if (x == Double.POSITIVE_INFINITY || y == Double.POSITIVE_INFINITY || z == Double.POSITIVE_INFINITY) {
+            throw new IllegalStateException("x,y,z must not Infinity");
+        }
     }
 }
