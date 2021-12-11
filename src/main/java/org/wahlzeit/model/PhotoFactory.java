@@ -34,7 +34,7 @@ public class PhotoFactory {
 	/**
 	 * Method to set the singleton instance of PhotoFactory.
 	 */
-	protected static synchronized void setInstance(PhotoFactory photoFactory) {
+	protected static synchronized void setInstance(PhotoFactory photoFactory) throws IllegalStateException{
 		if (instance != null) {
 			throw new IllegalStateException("attempt to initialize PhotoFactory twice");
 		}

@@ -19,7 +19,7 @@ public class NaturePhotoManager extends PhotoManager{
      */
     protected Map<PhotoId, NaturePhoto> photoCache = new HashMap<PhotoId, NaturePhoto>();
 
-    public static NaturePhotoManager getInstance() {
+    public static NaturePhotoManager getInstance() throws IllegalStateException{
         if (!isInitialized) {
             PhotoManager.setInstance(new NaturePhotoManager());
             isInitialized = true;
@@ -200,6 +200,7 @@ public class NaturePhotoManager extends PhotoManager{
      *
      */
     protected NaturePhoto getPhotoFromFilter(PhotoFilter filter) {
+        assert filter != null;
         PhotoId id = filter.getRandomDisplayablePhotoId();
         NaturePhoto result = getPhotoFromId(id);
         while((result != null) && !result.isVisible()) {

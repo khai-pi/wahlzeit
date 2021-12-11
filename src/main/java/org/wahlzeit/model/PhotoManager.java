@@ -39,7 +39,7 @@ public class PhotoManager extends ObjectManager {
 		return instance;
 	}
 
-	public static void setInstance(PhotoManager photoManager) {
+	public static void setInstance(PhotoManager photoManager) throws IllegalStateException{
 		if (instance != null) {
 			throw new IllegalStateException("attemp to initialize PhotoManager twice");
 		}

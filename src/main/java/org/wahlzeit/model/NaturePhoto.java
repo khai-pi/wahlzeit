@@ -71,7 +71,8 @@ public class NaturePhoto extends Photo {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(String country) throws IllegalArgumentException{
+        assertCountry(country);
         this.country = country;
     }
 
@@ -79,7 +80,26 @@ public class NaturePhoto extends Photo {
         return daytime;
     }
 
-    public void setDaytime(int daytime) {
+    public void setDaytime(int daytime) throws IllegalArgumentException{
+        assertDayTime(daytime);
         this.daytime = daytime;
+    }
+
+    public void assertDayTime(int daytime) throws IllegalArgumentException {
+        if (daytime < 0 || daytime >= 24) {
+            throw new IllegalArgumentException("Invalid daytime");
+        }
+    }
+
+    public void assertCountry(String country) throws IllegalArgumentException {
+        if (country == null) {
+            throw new IllegalArgumentException("country is null");
+        }
+        char[] arr = country.toCharArray();
+        for (char c : arr) {
+            if (Character.isDigit(c)) {
+                throw new IllegalArgumentException("Country name should not contain number");
+            }
+        }
     }
 }

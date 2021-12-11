@@ -14,14 +14,14 @@ public class Location extends DataObject {
     private CartesianCoordinate cartesianCoordinate;
     private SphericCoordinate sphericCoordinate;
 
-    public Location(Coordinate coordinate) {
-        assert coordinate != null;
+    public Location(Coordinate coordinate) throws NullPointerException{
+        assertCoordinateIsNotNull(coordinate);
         this.cartesianCoordinate = coordinate.asCartesianCoordinate();
         this.sphericCoordinate = coordinate.asSphericCoordinate();
     }
 
-    public void setCoordinate(Coordinate coordinate) {
-        assert coordinate != null;
+    public void setCoordinate(Coordinate coordinate) throws IllegalStateException{
+        assertCoordinateIsNotNull(coordinate);
         this.cartesianCoordinate = coordinate.asCartesianCoordinate();
         this.sphericCoordinate = coordinate.asSphericCoordinate();
     }
@@ -56,5 +56,9 @@ public class Location extends DataObject {
     @Override
     public void writeId(PreparedStatement stmt, int pos) throws SQLException {
 
+    }
+
+    public void assertCoordinateIsNotNull(Coordinate coordinate) throws NullPointerException{
+        if (coordinate==null) throw new NullPointerException("coordinate must not be null");
     }
 }

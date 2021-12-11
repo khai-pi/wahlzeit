@@ -136,7 +136,7 @@ public class CartesianCoordinateTest {
         CartesianCoordinate coordinate = new CartesianCoordinate(-1,-1,-1);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testDistanceWithNullObject() {
         cartesianCoordinate.getCartesianDistance(null);
     }

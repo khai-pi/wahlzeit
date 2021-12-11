@@ -30,9 +30,12 @@ public abstract class ModelMain extends AbstractMain {
 		}
 		
  		loadGlobals();
-
-		NaturePhotoFactory.initialize();
-		NaturePhotoManager.initialize();
+		try {
+			NaturePhotoFactory.initialize();
+			NaturePhotoManager.initialize();
+		} catch (IllegalStateException illegalStateException) {
+			illegalStateException.printStackTrace();
+		}
 	}
 	
 	/**

@@ -34,4 +34,16 @@ public class NaturePhotoTest {
         np.setDaytime(12);
         assertEquals(12, np.getDaytime());
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetCountryNull() {
+        NaturePhoto np = new NaturePhoto();
+        np.setCountry(null);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetCountryNameWithNumber() {
+        NaturePhoto np = new NaturePhoto();
+        np.setCountry("abd123");
+    }
 }

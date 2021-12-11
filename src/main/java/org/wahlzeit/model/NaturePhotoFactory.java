@@ -15,7 +15,7 @@ public class NaturePhotoFactory extends PhotoFactory {
     /**
      * Public singleton access method.
      */
-    public static synchronized NaturePhotoFactory getInstance() {
+    public static synchronized NaturePhotoFactory getInstance() throws IllegalStateException {
         if (!isInitialized) {
             SysLog.logSysInfo("setting generic NaturePhotoFactory");
             PhotoFactory.setInstance(new NaturePhotoFactory());

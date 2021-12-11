@@ -171,7 +171,7 @@ public abstract class ObjectManager {
 	/**
 	 * 
 	 */
-	protected void assertIsNonNullArgument(Object arg, String label) {
+	protected void assertIsNonNullArgument(Object arg, String label) throws IllegalStateException{
 		if (arg == null) {
 			throw new IllegalArgumentException(label + " should not be null");
 		}

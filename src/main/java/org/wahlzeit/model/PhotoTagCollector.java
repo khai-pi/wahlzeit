@@ -18,6 +18,8 @@ public class PhotoTagCollector {
 	 * 
 	 */
 	public void collect(Set<String> tags, Photo photo) {
+		if (photo == null) throw new NullPointerException("photo is Null");
+		if (tags == null) throw new NullPointerException("tags is null");
 		String ownerName = photo.getOwnerName();
 		if (!StringUtil.isNullOrEmptyString(ownerName)) {
 			String ownerNameAsTag = Tags.asTag(ownerName);

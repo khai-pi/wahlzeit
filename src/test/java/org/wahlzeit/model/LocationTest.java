@@ -43,6 +43,11 @@ public class LocationTest {
         assertEquals(newCoordinate, location.getCartesianCoordinate());
     }
 
+    @Test(expected = NullPointerException.class)
+    public void testNullCoordinate() {
+        Location location = new Location(null);
+    }
+
 //    @Test
 //    public void testCoordinateAreConvertEqualy() {
 //        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(1,0,0);

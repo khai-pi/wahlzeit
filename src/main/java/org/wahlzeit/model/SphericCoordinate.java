@@ -13,7 +13,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     private double theta;
     private double radius;
 
-    public SphericCoordinate(double phi, double theta, double radius) {
+    public SphericCoordinate(double phi, double theta, double radius) throws IllegalStateException {
         this.phi = phi;
         this.theta = theta;
         this.radius = radius;
@@ -47,7 +47,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     @Override
-    public CartesianCoordinate asCartesianCoordinate() {
+    public CartesianCoordinate asCartesianCoordinate() throws IllegalStateException{
 
         assertClassInvariants();
 
@@ -74,22 +74,26 @@ public class SphericCoordinate extends AbstractCoordinate {
      * then it calculates the central angle between 2 coordinates
      */
     @Override
-    public double getCentralAngle(Coordinate coordinate) {
+    public double getCentralAngle(Coordinate coordinate) throws IllegalArgumentException {
+        try {
+            assertClassInvariants();
+            assertCoordinateIsNotNull(coordinate);
 
-        assertClassInvariants();
-        assertCoordinateIsNotNull(coordinate);
+            SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
 
-        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
+            double centralAngle = Math.acos(Math.sin(this.getPhi()) * Math.sin(sphericCoordinate.getPhi())
+                    + Math.cos(this.getPhi())
+                    * Math.cos(sphericCoordinate.asSphericCoordinate().getPhi())
+                    * Math.cos(Math.abs(this.getRadius() - sphericCoordinate.asSphericCoordinate().getRadius())));
 
-        double centralAngle = Math.acos(Math.sin(this.getPhi()) * Math.sin(sphericCoordinate.getPhi())
-                + Math.cos(this.getPhi())
-                * Math.cos(sphericCoordinate.asSphericCoordinate().getPhi())
-                * Math.cos(Math.abs(this.getRadius() - sphericCoordinate.asSphericCoordinate().getRadius())));
+            assert centralAngle >= 0;
+            assertClassInvariants();
 
-        assert centralAngle >= 0;
-        assertClassInvariants();
-
-        return centralAngle;
+            return centralAngle;
+        } catch (IllegalStateException | NullPointerException exception) {
+            throw new IllegalArgumentException("Something is wrong with your coordinate"
+                    + exception);
+        }
     }
 
 //    @Override

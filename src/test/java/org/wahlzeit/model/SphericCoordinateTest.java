@@ -123,8 +123,9 @@ public class SphericCoordinateTest {
         SphericCoordinate coordinate = new SphericCoordinate(0,0,-1);
     }
 
-    @Test(expected =NullPointerException.class)
+    @Test(expected =IllegalArgumentException.class)
     public void testDistanceWithNullObject() {
         sphericCoordinate.getCentralAngle(null);
     }
+
 }

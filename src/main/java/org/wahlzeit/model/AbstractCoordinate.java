@@ -35,7 +35,7 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
      * then it calculates the distance between 2 coordinates
      */
     @Override
-    public double getCartesianDistance(Coordinate coordinate) {
+    public double getCartesianDistance(Coordinate coordinate) throws NullPointerException {
         assertCoordinateIsNotNull(coordinate);
         return coordinate.asCartesianCoordinate().getCartesianDistance(this);
     }
@@ -52,7 +52,7 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
      * then it calculates the central angle between 2 coordinates
      */
     @Override
-    public double getCentralAngle(Coordinate coordinate) {
+    public double getCentralAngle(Coordinate coordinate) throws NullPointerException{
         assertCoordinateIsNotNull(coordinate);
         return coordinate.asSphericCoordinate().getCentralAngle(this);
     }
@@ -89,7 +89,7 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
     public abstract void assertClassInvariants();
 
     public void assertCoordinateIsNotNull(Coordinate coordinate) throws NullPointerException{
-        if (coordinate==null) throw new NullPointerException();
+        if (coordinate==null) throw new NullPointerException("coordinate must not be null");
     }
 
 }

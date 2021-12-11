@@ -21,7 +21,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
      *
      * @methodtype constructor
      */
-    public CartesianCoordinate(double x, double y, double z) {
+    public CartesianCoordinate(double x, double y, double z) throws IllegalStateException {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -86,21 +86,25 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * then it calculates the distance between 2 coordinates
      */
     @Override
-    public double getCartesianDistance(Coordinate coordinate) {
+    public double getCartesianDistance(Coordinate coordinate) throws IllegalArgumentException {
+        try {
+            assertClassInvariants();
+            assertCoordinateIsNotNull(coordinate);
 
-        assertClassInvariants();
-        assertCoordinateIsNotNull(coordinate);
+            CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
+            double distanceSquare =
+                    Math.pow(this.getX() - cartesianCoordinate.getX(), 2)
+                            + Math.pow(this.getY() - cartesianCoordinate.getY(), 2)
+                            + Math.pow(this.getZ() - cartesianCoordinate.getZ(), 2);
 
-        CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
-        double distanceSquare =
-                Math.pow(this.getX()-cartesianCoordinate.getX(),2)
-                        + Math.pow(this.getY()-cartesianCoordinate.getY(),2)
-                        + Math.pow(this.getZ()-cartesianCoordinate.getZ(),2);
+            assert distanceSquare >= 0;
+            assertClassInvariants();
 
-        assert distanceSquare >= 0;
-        assertClassInvariants();
-
-        return Math.sqrt(distanceSquare);
+            return Math.sqrt(distanceSquare);
+        } catch (IllegalStateException | NullPointerException exception) {
+            throw new IllegalArgumentException("Something is wrong with your coordinate"
+                    + exception);
+        }
     }
 
     @Override
