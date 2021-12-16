@@ -13,9 +13,9 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private double x;
-    private double y;
-    private double z;
+    private final double x;
+    private final double y;
+    private final double z;
 
     /**
      *
@@ -29,19 +29,19 @@ public class CartesianCoordinate extends AbstractCoordinate {
         assertClassInvariants();
     }
 
-    public void setX(double x) {
+    public CartesianCoordinate setX(double x) {
         assert x >= 0;
-        this.x = x;
+        return new CartesianCoordinate(x, this.getY(), this.getZ());
     }
 
-    public void setY(double y) {
+    public CartesianCoordinate setY(double y) {
         assert y >= 0;
-        this.y = y;
+        return new CartesianCoordinate(this.getX(), y, this.getZ());
     }
 
-    public void setZ(double z) {
+    public CartesianCoordinate setZ(double z) {
         assert z >= 0;
-        this.z = z;
+        return new CartesianCoordinate(this.getX(), this.getY(), z);
     }
 
     public double getX() {
@@ -112,12 +112,13 @@ public class CartesianCoordinate extends AbstractCoordinate {
         return Objects.hash(x, y, z);
     }
 
+    // TODO How to create new object here
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
         assert rset != null;
-        x = rset.getDouble("coordinate_x");
-        y = rset.getDouble("coordinate_y");
-        z = rset.getDouble("coordinate_z");
+//        x = rset.getDouble("coordinate_x");
+//        y = rset.getDouble("coordinate_y");
+//        z = rset.getDouble("coordinate_z");
     }
 
     @Override

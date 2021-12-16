@@ -9,9 +9,9 @@ import java.util.Objects;
 
 public class SphericCoordinate extends AbstractCoordinate {
 
-    private double phi;
-    private double theta;
-    private double radius;
+    private final double phi;
+    private final double theta;
+    private final double radius;
 
     public SphericCoordinate(double phi, double theta, double radius) throws IllegalStateException {
         this.phi = phi;
@@ -33,17 +33,19 @@ public class SphericCoordinate extends AbstractCoordinate {
         return this.radius;
     }
 
-    public void setPhi(double phi) {
-        this.phi = phi;
+    public SphericCoordinate setPhi(double phi) {
+        // this.phi = phi;
+        return new SphericCoordinate(phi, this.getTheta(), this.getRadius());
     }
 
-    public void setTheta(double theta) {
-        this.theta = theta;
+    public SphericCoordinate setTheta(double theta) {
+        // this.theta = theta;
+        return new SphericCoordinate(this.getPhi(), theta, this.getRadius());
     }
 
-    public void setRadius(double radius) {
+    public SphericCoordinate setRadius(double radius) {
         assert radius >= 0;
-        this.radius = radius;
+        return new SphericCoordinate(this.getPhi(), this.getTheta(), radius);
     }
 
     @Override
@@ -101,12 +103,13 @@ public class SphericCoordinate extends AbstractCoordinate {
 //        return Objects.hash(phi,theta,radius);
 //    }
 
+    // TODO How to create new object here
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
         assert rset != null;
-        phi = rset.getDouble("coordinate_phi");
-        theta = rset.getDouble("coordinate_theta");
-        radius = rset.getDouble("coordinate_radius");
+//        phi = rset.getDouble("coordinate_phi");
+//        theta = rset.getDouble("coordinate_theta");
+//        radius = rset.getDouble("coordinate_radius");
     }
 
     @Override
