@@ -6,9 +6,12 @@ import java.lang.Math;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class CartesianCoordinate extends AbstractCoordinate {
+
+    protected static HashMap<Integer, CartesianCoordinate> map = new HashMap<>();
 
     /**
      *
@@ -21,12 +24,27 @@ public class CartesianCoordinate extends AbstractCoordinate {
      *
      * @methodtype constructor
      */
-    public CartesianCoordinate(double x, double y, double z) throws IllegalStateException {
+    private CartesianCoordinate(double x, double y, double z) throws IllegalStateException {
         this.x = x;
         this.y = y;
         this.z = z;
 
         assertClassInvariants();
+    }
+
+    /**
+     * get CartesianCoordinate in map
+     * if there is no such coordinate, create a new one
+     *
+     */
+    public static CartesianCoordinate getCartesianCoorinate(double x, double y, double z) {
+        int hash = hashCode(x,y,z);
+        CartesianCoordinate cartesianCoordinate = map.get(hash);
+        if (cartesianCoordinate == null) {
+            cartesianCoordinate = new CartesianCoordinate(x, y, z);
+            map.put(hash, cartesianCoordinate);
+        }
+        return cartesianCoordinate;
     }
 
     public CartesianCoordinate setX(double x) {
@@ -67,14 +85,14 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
         double radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
         if (radius == 0) {
-            return new SphericCoordinate(0,0,0);
+            return SphericCoordinate.getSphericCoordinate(0,0,0);
         }
         double phi = Math.atan(y / x);
         double theta = Math.acos(z / radius);
 
         assertClassInvariants();
 
-        return new SphericCoordinate(phi, theta, radius);
+        return SphericCoordinate.getSphericCoordinate(phi, theta, radius);
     }
 
     /**
@@ -110,6 +128,10 @@ public class CartesianCoordinate extends AbstractCoordinate {
     @Override
     public int hashCode() {
         return Objects.hash(x, y, z);
+    }
+
+    private static int hashCode(double x, double y, double z) {
+        return Objects.hash(x,y,z);
     }
 
     // TODO How to create new object here

@@ -5,20 +5,33 @@ import org.wahlzeit.services.DataObject;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Objects;
 
 public class SphericCoordinate extends AbstractCoordinate {
+
+    protected static HashMap<Integer, SphericCoordinate> map = new HashMap<>();
 
     private final double phi;
     private final double theta;
     private final double radius;
 
-    public SphericCoordinate(double phi, double theta, double radius) throws IllegalStateException {
+    private SphericCoordinate(double phi, double theta, double radius) throws IllegalStateException {
         this.phi = phi;
         this.theta = theta;
         this.radius = radius;
 
         assertClassInvariants();
+    }
+
+    public static SphericCoordinate getSphericCoordinate(double phi, double theta, double radius) {
+        int hash = hashCode(phi, theta, radius);
+        SphericCoordinate sphericCoordinate = map.get(hash);
+        if (sphericCoordinate == null) {
+            sphericCoordinate = new SphericCoordinate(phi, theta, radius);
+            map.put(hash, sphericCoordinate);
+        }
+        return sphericCoordinate;
     }
 
     public double getPhi() {
@@ -59,7 +72,7 @@ public class SphericCoordinate extends AbstractCoordinate {
 
         assertClassInvariants();
 
-        return new CartesianCoordinate(x,y,z);
+        return CartesianCoordinate.getCartesianCoorinate(x,y,z);
     }
 
     @Override
@@ -102,6 +115,10 @@ public class SphericCoordinate extends AbstractCoordinate {
 //    public int hashCode() {
 //        return Objects.hash(phi,theta,radius);
 //    }
+
+    private static int hashCode(double phi, double theta, double radius) {
+        return Objects.hash(phi, theta, radius);
+    }
 
     // TODO How to create new object here
     @Override
