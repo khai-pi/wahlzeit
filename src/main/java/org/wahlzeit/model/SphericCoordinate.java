@@ -129,6 +129,15 @@ public class SphericCoordinate extends AbstractCoordinate {
 //        radius = rset.getDouble("coordinate_radius");
     }
 
+    /**
+     *
+     * @param rset
+     * @return SphericCoordinate
+     * @throws SQLException
+     *
+     * this method is used instead of old readFrom since is complicated to change readFrom signature
+     */
+
     public static SphericCoordinate readFromValue(ResultSet rset) throws SQLException {
         double phiRset = rset.getDouble("coordinate_x");
         double thetaRset = rset.getDouble("coordinate_y");

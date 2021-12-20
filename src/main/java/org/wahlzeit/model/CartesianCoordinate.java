@@ -144,6 +144,14 @@ public class CartesianCoordinate extends AbstractCoordinate {
 //        getCartesianCoorinate(x,y,z)
     }
 
+    /**
+     *
+     * @param rset
+     * @return CartesianCoordinate
+     * @throws SQLException
+     *
+     * this method is used instead of old readFrom since is complicated to change readFrom signature
+     */
     public static CartesianCoordinate readFromValue(ResultSet rset) throws SQLException {
         double xRset = rset.getDouble("coordinate_x");
         double yRset = rset.getDouble("coordinate_y");
