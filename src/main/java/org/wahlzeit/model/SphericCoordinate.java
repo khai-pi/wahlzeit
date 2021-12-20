@@ -163,4 +163,9 @@ public class SphericCoordinate extends AbstractCoordinate {
             throw new IllegalStateException("radius must greater than 0");
         }
     }
+
+    @Override
+    public Object clone() {
+        return this;
+    }
 }

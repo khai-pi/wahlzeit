@@ -68,11 +68,11 @@ public abstract class AbstractCoordinate extends DataObject implements Coordinat
     @Override
     public boolean equals(Object o) {
         assert o != null;
-//        if (o==this) return true;
-//        if (!(o instanceof AbstractCoordinate)) return false;
-//        AbstractCoordinate other = (AbstractCoordinate) o;
-//        return isEqual(other);
-        return this == o;
+        if (o==this) return true;
+        if (!(o instanceof AbstractCoordinate)) return false;
+        AbstractCoordinate other = (AbstractCoordinate) o;
+        return isEqual(other);
+        //return this == o;
     }
 
     @Override

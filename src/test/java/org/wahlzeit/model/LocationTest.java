@@ -20,7 +20,7 @@ public class LocationTest {
 
     @Before
     public void initLocation() {
-        cartesianCoordinate = new CartesianCoordinate(1,2,3);
+        cartesianCoordinate = CartesianCoordinate.getCartesianCoorinate(1,2,3);
         sphericCoordinate = cartesianCoordinate.asSphericCoordinate();
         location = new Location(cartesianCoordinate);
     }
@@ -32,13 +32,13 @@ public class LocationTest {
 
     @Test
     public void testGet() {
-        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(1,2,3);
+        CartesianCoordinate cartesianCoordinate = CartesianCoordinate.getCartesianCoorinate(1,2,3);
         assertEquals(cartesianCoordinate, location.getCartesianCoordinate());
     }
 
     @Test
     public void testSet() {
-        CartesianCoordinate newCoordinate = new CartesianCoordinate(4,5,6);
+        CartesianCoordinate newCoordinate = CartesianCoordinate.getCartesianCoorinate(4,5,6);
         location.setCoordinate(newCoordinate);
         assertEquals(newCoordinate, location.getCartesianCoordinate());
     }

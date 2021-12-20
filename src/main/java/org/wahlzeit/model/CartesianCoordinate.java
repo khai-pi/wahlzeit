@@ -1,9 +1,6 @@
 package org.wahlzeit.model;
 
-import org.wahlzeit.services.DataObject;
-
 import java.lang.Math;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -175,5 +172,10 @@ public class CartesianCoordinate extends AbstractCoordinate {
         if (x == Double.POSITIVE_INFINITY || y == Double.POSITIVE_INFINITY || z == Double.POSITIVE_INFINITY) {
             throw new IllegalStateException("x,y,z must not Infinity");
         }
+    }
+
+    @Override
+    public Object clone() {
+        return this;
     }
 }
