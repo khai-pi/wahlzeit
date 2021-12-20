@@ -42,8 +42,10 @@ public class Location extends DataObject {
     @Override
     public void readFrom(ResultSet rset) throws SQLException {
         assert rset != null;
-        this.cartesianCoordinate.readFrom(rset);
-        this.sphericCoordinate.readFrom(rset);
+//        this.cartesianCoordinate.readFrom(rset);
+        this.cartesianCoordinate = CartesianCoordinate.readFromValue(rset);
+//        this.sphericCoordinate.readFrom(rset);
+        this.sphericCoordinate = SphericCoordinate.readFromValue(rset);
     }
 
     @Override

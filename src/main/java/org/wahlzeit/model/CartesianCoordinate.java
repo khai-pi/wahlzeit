@@ -138,6 +138,17 @@ public class CartesianCoordinate extends AbstractCoordinate {
 //        x = rset.getDouble("coordinate_x");
 //        y = rset.getDouble("coordinate_y");
 //        z = rset.getDouble("coordinate_z");
+//        double xRset = rset.getDouble("coordinate_x");
+//        double yRset = rset.getDouble("coordinate_y");
+//        double zRset = rset.getDouble("coordinate_z");
+//        getCartesianCoorinate(x,y,z)
+    }
+
+    public static CartesianCoordinate readFromValue(ResultSet rset) throws SQLException {
+        double xRset = rset.getDouble("coordinate_x");
+        double yRset = rset.getDouble("coordinate_y");
+        double zRset = rset.getDouble("coordinate_z");
+        return getCartesianCoorinate(xRset,yRset,zRset);
     }
 
     @Override

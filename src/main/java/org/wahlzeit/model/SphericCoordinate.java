@@ -129,6 +129,13 @@ public class SphericCoordinate extends AbstractCoordinate {
 //        radius = rset.getDouble("coordinate_radius");
     }
 
+    public static SphericCoordinate readFromValue(ResultSet rset) throws SQLException {
+        double phiRset = rset.getDouble("coordinate_x");
+        double thetaRset = rset.getDouble("coordinate_y");
+        double radiusRset = rset.getDouble("coordinate_z");
+        return getSphericCoordinate(phiRset,thetaRset,radiusRset);
+    }
+
     @Override
     public void writeOn(ResultSet rset) throws SQLException {
         assert rset != null;
