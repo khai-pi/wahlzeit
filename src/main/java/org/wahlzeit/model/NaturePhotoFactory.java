@@ -5,6 +5,12 @@ import org.wahlzeit.services.SysLog;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+@PatternInstance(
+        patternName = "Singleton",
+        participants = {
+                "NaturePhotoFactory"
+        }
+)
 public class NaturePhotoFactory extends PhotoFactory {
 
     /**

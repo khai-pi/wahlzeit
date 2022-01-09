@@ -10,6 +10,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+@PatternInstance(
+        patternName = "Singleton",
+        participants = {
+                "NaturePhotoManager"
+        }
+)
 public class NaturePhotoManager extends PhotoManager{
 
     private static boolean isInitialized = false;
@@ -19,7 +25,7 @@ public class NaturePhotoManager extends PhotoManager{
      */
     protected Map<PhotoId, NaturePhoto> photoCache = new HashMap<PhotoId, NaturePhoto>();
 
-    public static NaturePhotoManager getInstance() throws IllegalStateException{
+    public static synchronized NaturePhotoManager getInstance() throws IllegalStateException{
         if (!isInitialized) {
             PhotoManager.setInstance(new NaturePhotoManager());
             isInitialized = true;

@@ -12,6 +12,13 @@ import org.wahlzeit.services.*;
 /**
  * An Abstract Factory for creating photos and related objects.
  */
+@PatternInstance(
+		patternName = "Factory Method",
+		participants = {
+		"PhotoFactory",
+		"NaturePhotoFactory"
+	}
+)
 public class PhotoFactory {
 	
 	/**

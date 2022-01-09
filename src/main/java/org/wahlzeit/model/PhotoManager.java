@@ -15,6 +15,12 @@ import org.wahlzeit.services.*;
 /**
  * A photo manager provides access to and manages photos.
  */
+@PatternInstance(
+		patternName = "Singleton",
+		participants = {
+				"PhotoManager"
+		}
+)
 public class PhotoManager extends ObjectManager {
 	
 	/**
@@ -39,7 +45,7 @@ public class PhotoManager extends ObjectManager {
 		return instance;
 	}
 
-	public static void setInstance(PhotoManager photoManager) throws IllegalStateException{
+	public static synchronized void setInstance(PhotoManager photoManager) throws IllegalStateException{
 		if (instance != null) {
 			throw new IllegalStateException("attemp to initialize PhotoManager twice");
 		}

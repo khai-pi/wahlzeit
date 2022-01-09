@@ -6,6 +6,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 
+@PatternInstance(
+        patternName = "Value Objects",
+        participants = {
+                "CartesianCoordinate"
+    }
+)
 public class CartesianCoordinate extends AbstractCoordinate {
 
     protected static HashMap<Integer, CartesianCoordinate> map = new HashMap<>();

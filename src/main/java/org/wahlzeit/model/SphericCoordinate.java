@@ -8,6 +8,12 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Objects;
 
+@PatternInstance(
+        patternName = "Value Objects",
+        participants = {
+                "SphericCoordinate"
+        }
+)
 public class SphericCoordinate extends AbstractCoordinate {
 
     protected static HashMap<Integer, SphericCoordinate> map = new HashMap<>();
