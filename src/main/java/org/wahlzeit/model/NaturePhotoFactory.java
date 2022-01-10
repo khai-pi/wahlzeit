@@ -8,7 +8,7 @@ import java.sql.SQLException;
 @PatternInstance(
         patternName = "Singleton",
         participants = {
-                "NaturePhotoFactory"
+                "Singleton"
         }
 )
 public class NaturePhotoFactory extends PhotoFactory {

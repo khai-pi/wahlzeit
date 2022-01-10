@@ -13,7 +13,7 @@ import java.util.*;
 @PatternInstance(
         patternName = "Singleton",
         participants = {
-                "NaturePhotoManager"
+                "Singleton"
         }
 )
 public class NaturePhotoManager extends PhotoManager{

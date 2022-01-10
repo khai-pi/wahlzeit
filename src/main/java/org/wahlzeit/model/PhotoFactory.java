@@ -15,8 +15,8 @@ import org.wahlzeit.services.*;
 @PatternInstance(
 		patternName = "Factory Method",
 		participants = {
-		"PhotoFactory",
-		"NaturePhotoFactory"
+		"AbstractFactory",
+		"ConcreteFactory"
 	}
 )
 public class PhotoFactory {

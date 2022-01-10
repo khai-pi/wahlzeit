@@ -18,7 +18,7 @@ import org.wahlzeit.services.*;
 @PatternInstance(
 		patternName = "Singleton",
 		participants = {
-				"PhotoManager"
+				"Singleton"
 		}
 )
 public class PhotoManager extends ObjectManager {
