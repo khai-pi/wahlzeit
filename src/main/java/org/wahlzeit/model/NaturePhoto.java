@@ -20,6 +20,8 @@ public class NaturePhoto extends Photo {
     private String country;
     private int daytime = -1;
 
+    private Nature nature;
+
     /**
      *
      * @methodtype constructor
@@ -83,6 +85,14 @@ public class NaturePhoto extends Photo {
     public void setDaytime(int daytime) throws IllegalArgumentException{
         assertDayTime(daytime);
         this.daytime = daytime;
+    }
+
+    public void setNature(Nature nature) {
+        this.nature = nature;
+    }
+
+    public Nature getNature() {
+        return this.nature;
     }
 
     public void assertDayTime(int daytime) throws IllegalArgumentException {

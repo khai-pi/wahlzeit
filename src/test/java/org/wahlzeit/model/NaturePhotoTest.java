@@ -46,4 +46,15 @@ public class NaturePhotoTest {
         NaturePhoto np = new NaturePhoto();
         np.setCountry("abd123");
     }
+
+    @Test
+    public void testSetNature() {
+
+    }
+
+    @Test
+    public void testGetNature() {
+
+    }
+
 }
