@@ -3,8 +3,9 @@ package org.wahlzeit.model;
 import java.util.HashMap;
 
 public class NatureManager {
-
+    // Singleton
     private static final NatureManager instance = new NatureManager();
+    // Data Structure for Nature and NatureType
     private HashMap<Integer, Nature> natures = new HashMap<Integer, Nature>();
     private HashMap<String, NatureType> natureTypes = new HashMap<String, NatureType>();
 

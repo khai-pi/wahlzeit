@@ -13,7 +13,7 @@ public class NatureType extends DataObject {
 
     protected NatureType superType = null;
     protected Set<NatureType> subTypes = new HashSet<NatureType>();
-    protected String name;
+    protected String name; // Attribute to distint different NatureType
 
     public NatureType(String name) {
         this.name = name;
@@ -60,12 +60,14 @@ public class NatureType extends DataObject {
         this.superType = natureType;
     }
 
+    // add subtype to set
     public void addSubType(NatureType natureType) {
         assert (natureType!=null);
         natureType.setSuperType(this);
         this.subTypes.add(natureType);
     }
 
+    // Recursive check if NatureType has this Nature
     public boolean hasInstance(Nature nature) {
         assert (nature != null);
 
@@ -75,5 +77,10 @@ public class NatureType extends DataObject {
         }
 
         return false;
+    }
+
+    // return true if it has a superType
+    public boolean isSubType() {
+        return superType!=null;
     }
 }
