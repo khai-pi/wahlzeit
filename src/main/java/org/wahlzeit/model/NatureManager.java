@@ -17,6 +17,7 @@ public class NatureManager {
         assertIsValidNatureTypeName(typeName);
 
         NatureType natureType = getNatureType(typeName);
+        // NatureType call
         Nature result = natureType.createInstance();
         natures.put(result.getId(), result);
 
@@ -26,6 +27,7 @@ public class NatureManager {
     public NatureType getNatureType(String typeName) {
         NatureType natureType = natureTypes.get(typeName);
         if (natureType == null) {
+            // Constructor call
             natureType = new NatureType(typeName);
             natureTypes.put(typeName, natureType);
         }

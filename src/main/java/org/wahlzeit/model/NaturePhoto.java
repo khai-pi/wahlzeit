@@ -27,6 +27,7 @@ public class NaturePhoto extends Photo {
      * @methodtype constructor
      */
     public NaturePhoto() {
+        //Super call
         super();
     }
 
@@ -35,6 +36,7 @@ public class NaturePhoto extends Photo {
      * @methodtype constructor
      */
     public NaturePhoto(PhotoId myId) {
+        // Super call
         super(myId);
     }
 
@@ -44,6 +46,7 @@ public class NaturePhoto extends Photo {
      */
     public NaturePhoto(ResultSet rset) throws SQLException {
         assert rset != null;
+        // Delegate to other class to create object
         readFrom(rset);
     }
 

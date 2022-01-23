@@ -45,6 +45,7 @@ public class NatureType extends DataObject {
     }
 
     public Nature createInstance() {
+        // Constructor call
         return new Nature(this);
     }
 

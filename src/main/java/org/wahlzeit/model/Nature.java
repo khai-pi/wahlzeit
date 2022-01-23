@@ -12,6 +12,7 @@ public class Nature {
     int id;
 
     public Nature(NatureType natureType) {
+        // Constructor call
         this.natureType = natureType;
         this.id = idCounter++; // increase each time object created
     }
