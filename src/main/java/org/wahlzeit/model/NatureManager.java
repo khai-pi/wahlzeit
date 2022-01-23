@@ -36,5 +36,8 @@ public class NatureManager {
         if (typeName==null || typeName.isEmpty()) {
             throw new IllegalStateException("typeName must not be null nor empty");
         }
+//        if (this.natureTypes.containsKey(typeName)) {
+//            throw new IllegalArgumentException("Type name '" + typeName + "' is not valid");
+//        }
     }
 }

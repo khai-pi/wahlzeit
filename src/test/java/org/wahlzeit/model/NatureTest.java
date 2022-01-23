@@ -13,10 +13,10 @@ public class NatureTest {
         assertEquals(nature1.getId()+1, nature2.getId());
     }
 
-    @Test
-    public void testSetNatureType() {
-        Nature nature = new Nature(new NatureType("Plants"));
-        nature.setNatureType(new NatureType("Animals"));
-        assertEquals("Animals", nature.getNatureType().name);
-    }
+//    @Test
+//    public void testSetNatureType() {
+//        Nature nature = new Nature(new NatureType("Plants"));
+//        nature.setNatureType(new NatureType("Animals"));
+//        assertEquals("Animals", nature.getNatureType().name);
+//    }
 }

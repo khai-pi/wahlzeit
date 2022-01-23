@@ -80,7 +80,10 @@ public class NatureType extends DataObject {
     }
 
     // return true if it has a superType
-    public boolean isSubType() {
-        return superType!=null;
+    public boolean isSubType(NatureType natureType) {
+        assert(natureType != null);
+        if (this.superType == natureType) return true;
+        if (this.superType.isSubType(natureType)) return true;
+        return false;
     }
 }

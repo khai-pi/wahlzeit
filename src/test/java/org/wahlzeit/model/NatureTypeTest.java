@@ -55,4 +55,12 @@ public class NatureTypeTest {
         plants.addSubType(trees);
         assertTrue(plants.hasInstance(new Nature(trees)));
     }
+
+    @Test
+    public void testIsSubType() {
+        NatureType plants = new NatureType("Plants");
+        NatureType trees = new NatureType("Trees");
+        trees.setSuperType(plants);
+        assertTrue(trees.isSubType(plants));
+    }
 }
